@@ -20,6 +20,8 @@ class Numbers{
 		void remove_last();
 		void display(std::ostream& outs);
 		unsigned long* reveal_address()const;
+		void overload(const numbers& other);
+		void deconstructor();
 
     private: 
 	unsigned long * data;
@@ -28,17 +30,17 @@ class Numbers{
 };
 
 Numbers::Numbers(){
-	unsigned long[5];
+	data = new unsigned long[5];
 	byte_count += 5*sizeof(unsigned long);
 	capacity = 5;
 	used = 0;
 }
 
 void Numbers::add(unsigned long item){
-	 if(used == size){
+	 if(used == capacity){
         resize();
     }
-    data[used] = unsigned long item;
+    data[used] = item;
     used++;
 }
 
@@ -46,21 +48,36 @@ void Numbers::resize(){
 
 	byte_count += 5*sizeof(unsigned long);
 	double* tmp;
-    tmp = new double[size + 5];
+    tmp = new double[capacity + 5];
 	for(int i = 0; i < used; i++){
         tmp[i] = data[i];
     }
 }
 
 void Numbers::remove_last(){
-delete data[];
+remove(used);
 used--;
 }
 
 void Numbers::display(std::ostream& outs){
 for(int i = 0; i < capacity; i++){
-	cout << data[i]" " << endl;
+	cout << data[i] << endl;
 }
+}
+void Numbers::overload(const numbers& other){
+	if(this == &other){
+        return;
+    }
+	delete data[];
+	
+	used = other.used;
+	capacity = other.capacity;
+	data = new double[capacity];
+    for(int i = 0; i < used; i++){
+        data[i] = other.data[i];
+}
+void Numbers::deconstructor();{
+	delete []data;
 }
 
 // You can leave this function alone
